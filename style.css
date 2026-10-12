@@ -418,3 +418,13 @@ body {
   background-color: #303030;
   color: #ffffff;
 }
+.bottom-logo{
+  text-align: center;
+  margin-top: 10px;
+}
+.bottomlogo1{
+  height: 80px;
+}
+.bottomlogo2{
+  height: 50px;
+}
