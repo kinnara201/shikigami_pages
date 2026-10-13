@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>式神</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <!-- ロゴエリア -->
+    <div class="logo-area">
+      <a href="#" class="logo-link">
+        <img src="logo-1.png" class="logo-img" alt="式神">
+      </a>
+    </div>
+
+    <!-- ハンバーガーボタン（768px以下で表示） -->
+    <div class="hamburger" id="js-hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- ナビゲーションエリア -->
+    <nav class="header-nav" id="js-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/about/index.html" class="nav-link">
+            <span>式神について</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/rule/index.html" class="nav-link">
+            <span>ルール</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/howto/index.html" class="nav-link">
+            <span>プレイ方法</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/rate/index.html" class="nav-link">
+            <span>レート戦</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/blog/index.html" class="nav-link">
+            <span>記事・ブログ</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span>Language</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span>検索</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <div class="main-section">
+      <div class="category-header">
+        <h1 class="mainc-header">式神について知る</h1>
+      </div>
+  </div>
+<div class="bottom-logo">
+  <img src="logo-1.png" class="bottomlogo1" >
+<div class="bottom-logo">
+<img src="logo-2.png" class="bottomlogo2" >
+<p class="bottomtext">🄫2026 バトルフィールド実行委員会</p>
+
+<p>現時点での完成状況</p>
+<p>github pages でアップします。今後ページ遷移を完成させるまではここに仮進捗情報を載せておきます。</p>
+<p>2026/10/04 M01_Hiroshima_Station 開設と画像スライド完成</p>
+<p>2026/10/06 M02_Inari-machi メニュー作成</p>
+<p>2026/10/12 M03_Kanayama-cho メインページ、ボトムメニュー作成</p>
+
+<!-- ハンバーガーメニュー開閉用のJavaScript -->
+<script>
+  const hamburger = document.getElementById('js-hamburger');
+  const nav = document.getElementById('js-nav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    nav.classList.toggle('active');
+  });
+
+  // メニュー内のリンクをクリックしたら閉じる処理
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+    });
+  });
+
+let slideIndex = 1;
+let slideTimer = null;
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("slide");
+  let dots = document.getElementsByClassName("dot");
+  
+  if (slides.length === 0) return; // 要素がない場合の安全対策
+  
+  if (n > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
+  
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  
+  slides[slideIndex - 1].style.display = "block";  
+  if (dots.length > 0) {
+    dots[slideIndex - 1].className += " active";
+  }
+}
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+  resetAutoSlide();
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+  resetAutoSlide();
+}
+
+function startAutoSlide() {
+  slideTimer = setInterval(function() {
+    slideIndex++;
+    showSlides(slideIndex);
+  }, 3000);
+}
+
+function resetAutoSlide() {
+  clearInterval(slideTimer);
+  startAutoSlide();
+}
+
+
+// -----------------------------------
+// 2. DOM読み込み完了後に実行する処理 (ハンバーガー & スクロールアニメ)
+// -----------------------------------
+document.addEventListener("DOMContentLoaded", function() {
+  
+  // --- スライドショー初期化 ---
+  showSlides(slideIndex);
+  startAutoSlide();
+});
+</script>
+
+</body>
+</html>
